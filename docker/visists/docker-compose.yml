@@ -1,0 +1,9 @@
+version : "3" #使用版本3的docker-compose
+services:   #services 關鍵字後面列出 node, redis 兩項專案中的服務
+  redis-server: 
+    image: 'redis' # 從 redis image build 出 container
+  node-app:
+    restart: always #用於處理出問題時重新啟動
+    build: . # Build 在同一資料夾的 Dockerfile（描述 Image 要組成的 yaml 檔案）成 container
+    ports:   # 外部露出開放的 port 對應到 docker container 的 port
+      - "4001:8080"
