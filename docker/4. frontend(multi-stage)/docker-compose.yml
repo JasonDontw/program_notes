@@ -1,0 +1,19 @@
+version : "3" #使用版本3的docker-compose
+services:   #services 關鍵字後面列出 node, redis 兩項專案中的服務
+  web: 
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+    - /app/node_modules
+    - .:/app
+    command: ["npm","run","test"]
