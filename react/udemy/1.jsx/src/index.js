@@ -1,6 +1,7 @@
 // Import the React and ReactDOM libraries
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TEST from './App';
 
 function gettime(){
     return (new Date()).toLocaleTimeString();
@@ -10,17 +11,22 @@ function gettime(){
 const App = function(){
     return <div>hi there!</div>
 };
+
 const App2 = ()=>{
-    const buttonText ={text:'Click me!'};
-    const style ={background:'blue',color:'white'}
+    const buttonText = {text:'Click me!'};
+    const style = {background:'blue',color:'white'}
 
     return (
     <div>
+        <App/>
+        <TEST/>
         <label className="label" htmlFor="name">Enter name:</label>
         <input type="text" id="name"/>
+
         <button style={{background:'blue',color:'white'}}>
         {gettime()}
         </button> 
+
         <button style={style}>
         {buttonText.text}
         </button> 
