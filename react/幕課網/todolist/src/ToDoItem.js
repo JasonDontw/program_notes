@@ -20,7 +20,14 @@ class ToDoItem extends Component{
     );
   }
 
-  
+  shouldComponentUpdate(nextProps, nextState){ //讓子組件被創建後不會再因為父組件的更動而從新渲染，用來提升效能
+      if(nextProps.item !== this.props.item){ //判斷下一個傳入的item及現有的一不一樣，因為shouldComponentUpdate會在渲染前執行，所以
+        return true;                          //this.props.item還是舊的資料
+      }else{
+        return false;
+      }
+  }
+
   handleClick(){   //第2種方法
     this.props.handleDelete(this.props.index);
   }

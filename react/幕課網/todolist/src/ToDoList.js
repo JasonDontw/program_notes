@@ -1,6 +1,7 @@
 import React,{ Component, Fragment} from 'react';
 import ToDoItem from './ToDoItem';
 import './style.css';
+import axios from 'axios';
 
 class ToDoList extends Component{
 
@@ -41,6 +42,18 @@ class ToDoList extends Component{
         </ul>
       </Fragment>
     );
+  }
+
+  componentDidMount(){ //用於放AJAX事先載入資料時  下方為測試用
+  //  axios.get('https://images.unsplash.com/photo-1516550135131-fe3dcb0bedc7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=621e8231a4e714c2e85f5acbbcc6a730&auto=format&fit=crop&w=1352&q=80').then(
+  //   (res)=>{ 
+  //     alert('true');
+  //   }
+  //  ).catch(
+  //   ()=>{
+  //     alert('false');
+  //   }
+  //  )
   }
 
   handleChange(e){
