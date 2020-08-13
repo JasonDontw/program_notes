@@ -25,17 +25,16 @@ class ToDoList extends Component{
             className='input'
             value={this.state.inputValue} type="text"
             onChange={this.handleChange}
+            ref={(input) => { this.input_value = input}} //(數據傳入寫法二)(盡量避免使用ref來獲取數值)
           />
           <button type="button" onClick={this.handleSubmit}>提交</button>
         </div>
 
-        <ul>
+        <ul  ref={(ul) => { this.ul_value = ul}}>
           {
             this.state.list.map((item , index) =>{
               return (
-                <div>
                   <ToDoItem key={index} handleDelete={this.handleDelete} item={item} index={index}/>
-                </div>
               )
             })
           }
@@ -50,7 +49,10 @@ class ToDoList extends Component{
     //     inputValue : e.target.value
     //   }
     // })
-    const value = e.target.value    //因為函式寫法為異步執行所以必須先把值保存起來
+    
+    const value = e.target.value    //因為函式寫法為異步執行所以必須先把值保存起來 (數據傳入寫法一)
+    const value2 = this.input_value.value //(數據傳入寫法二)
+
     this.setState(()=>({            //Return 簡寫寫法
       inputValue : value
     }))
@@ -62,7 +64,11 @@ class ToDoList extends Component{
     this.setState((prevState)=>({  //prevState是紀錄觸發此函術前的State狀態
       list : [...prevState.list , prevState.inputValue],
       inputValue : ''
-    }))
+    }),()=>{ 
+        console.log(this.ul_value.querySelectorAll('li').length+'內部'); //setState的內建的Callback函數，setState執行完成後執行，避免異步執行的錯誤
+    });
+
+        console.log(this.ul_value.querySelectorAll('li').length+'外部'); //因為setState是異步執行所以不會馬上渲染，導致執行時只會撈到舊的
   }
 
   handleDelete(index){
