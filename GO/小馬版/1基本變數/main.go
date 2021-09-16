@@ -91,5 +91,4 @@ func main() {
 	for _, value := range "abc" { //也可以直接迭代字串
 		fmt.Println("字串迭代", string(value))
 	}
-
 }
